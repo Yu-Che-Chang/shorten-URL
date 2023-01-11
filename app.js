@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   const url = req.body
   console.log(url)
+  
   res.render('index')
 })
 
