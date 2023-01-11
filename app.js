@@ -3,6 +3,7 @@ const port = 3000
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
+const urlGenerator = require('./url-generator')
 
 // set template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -19,7 +20,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  console.log(req.body)
+  const url = req.body
+  console.log(url)
   res.render('index')
 })
 
