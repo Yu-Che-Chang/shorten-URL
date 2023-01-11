@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const urlGenerator = require('../../url-generator')
+const URL = require('../../models/URLData')
 
 router.get('/', (req, res) => {
   res.render('index')

@@ -1,5 +1,5 @@
 function sample(collection) {
-  let randomIndex = Math.floor(Math.random() * 64)
+  let randomIndex = Math.floor(Math.random() * 62)
   return collection[randomIndex]
 }
 
@@ -13,9 +13,9 @@ function urlGenerator(url) {
   collection = collection.concat(...upperCaseLetters)
   collection = collection.concat(...numbers)
 
-  let urlShorted = 'https://shortURL/'
-  for (i = 0; i <= 4; i++) {
-    urlShorted += sample(collection)
+  let urlShorted = '/shorturl/'
+  for (i = 0; i < 5; i++) {
+    urlShorted += String(sample(collection))
   }
   return { shortenUrl: urlShorted }
 }

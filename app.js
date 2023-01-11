@@ -3,8 +3,6 @@ const port = 3000
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
-const urlGenerator = require('./url-generator')
-const URL = require('./models/URLData');
 const routes = require('./routes')
 
 // set template engine
