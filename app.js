@@ -2,7 +2,6 @@
 const port = 3000
 const express = require('express')
 const exphbs = require('express-handlebars')
-
 const app = express()
 
 // set template engine
@@ -13,7 +12,14 @@ app.use(express.static('public'))
 
 require('./config/mongoose')
 
+app.use(express.urlencoded({ extended: true })) //取得 url-encoded
+
 app.get('/', (req, res) => {
+  res.render('index')
+})
+
+app.post('/', (req, res) => {
+  console.log(req.body)
   res.render('index')
 })
 

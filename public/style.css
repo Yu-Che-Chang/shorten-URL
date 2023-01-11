@@ -1,0 +1,24 @@
+.card-body {
+  border-radius: 5px;
+  border: 2px solid gray;
+}
+
+.input {
+  position: absolute;
+}
+
+.form :invalid {
+
+}
+
+.form-control {
+  padding-left: 30px;
+}
+
+.magnifier {
+  position: relative;
+  bottom: 31px;
+  left: 8px;
+  z-index: 1;
+  color: #205295;
+}
