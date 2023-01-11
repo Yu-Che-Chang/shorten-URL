@@ -8,10 +8,11 @@
       <form action="/" method="post" class="form" novalidate>
         <div class="input-group mb-3">
           <input type="url" name="url" class="form-control" placeholder="http://" aria-label="http://"
-            aria-describedby="button-addon2" required>
+            aria-describedby="button-addon2" value="{{Data.url}}" required>
           <button class="btn btn-primary" type="submit" id="button-addon2">縮網址</button>
           <div class="input"></div>
           <span class="magnifier"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <div class="invalid-feedback">請輸入完整網址</div>
         </div>
     </div>
     </form>
