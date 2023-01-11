@@ -1,10 +1,16 @@
-<header>
-  <h4>URL Shortener</h4>
-  <img src="images/ExportedContentImage_00.png" alt="" style="height: 200px ;">
-</header>
-<div class="row">
-  <form action="">
-    <input type="url" required>
-    <button type="submit" class="btn btn-primary">縮網址</button>
-  </form>
+<div class="container py-5">
+  <div class="card-body mx-auto d-flex flex-column align-items-center" >
+    <div>
+      <h4 class="fs-2">URL Shortener</h4>
+      <img src="images/ExportedContentImage_00.png" alt="" style="height: 200px ; width: 200px">
+    </div>
+    <div>
+      <form action="/" method="post">
+        <input type="url" placeholder="http://" value="" required>
+      </form>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary" id="UrlInput">縮網址</button>
+    </div>
+  </div>
 </div>
