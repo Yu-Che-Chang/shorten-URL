@@ -7,9 +7,7 @@
   position: absolute;
 }
 
-.form :invalid {
-
-}
+.form :invalid {}
 
 .form-control {
   padding-left: 30px;
@@ -17,8 +15,8 @@
 
 .magnifier {
   position: relative;
-  bottom: 31px;
-  left: 8px;
+  right: 425px;
+  top: 7px;
   z-index: 1;
   color: #205295;
 }
