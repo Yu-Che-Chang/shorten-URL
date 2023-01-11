@@ -4,6 +4,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
 const urlGenerator = require('./url-generator')
+const URL = require('./models/URLData');
+const e = require('express');
 
 // set template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -20,10 +22,26 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  const url = req.body
-  console.log(url)
-  
-  res.render('index')
+  const input = req.body
+  const inputValue = req.body.url
+  const ShortenInput = urlGenerator()
+  const survey = { ...input, ...ShortenInput }
+  // 如果有相同網址
+  URL.findOne({ url: inputValue })
+    .then((Data) => {
+      if (Data) {
+        console.log('There was already existed')
+        res.render('index', { Data })
+      } else {
+        // 如果沒有則創建一組
+        console.log('Create new one')
+        console.log(survey)
+        URL.create(survey)
+          .then(() => res.render('index', { Data }))
+          .catch(error => console.log(error))
+      }
+    })
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {

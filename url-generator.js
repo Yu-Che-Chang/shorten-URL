@@ -13,12 +13,11 @@ function urlGenerator(url) {
   collection = collection.concat(...upperCaseLetters)
   collection = collection.concat(...numbers)
 
-  let urlShorted = ''
+  let urlShorted = 'https://shortURL/'
   for (i = 0; i <= 4; i++) {
     urlShorted += sample(collection)
   }
-  console.log(urlShorted)
-  return urlShorted
+  return { shortenUrl: urlShorted }
 }
 
 module.exports = urlGenerator
