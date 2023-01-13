@@ -3,13 +3,17 @@ const router = express.Router()
 const urlGenerator = require('../../public/javascripts/url-generator')
 const httpExisted = require('../../public/javascripts/httpExisted')
 const URL = require('../../models/URLData')
+const https = require('https')
+
+function returnStatus(inputValue) {
+  https.get(inputValue, (res) => {
+    console.log('status code:', res.statusCode)
+    console.log(res)
+  })
+}
 
 router.get('/', (req, res) => {
   res.render('index')
-  console.log(req.xhr)
-  if (res.statusCode !== 200) {
-    res.render('error')
-  }
 })
 
 router.post('/', (req, res) => {
@@ -24,13 +28,16 @@ router.post('/', (req, res) => {
     .then((Data) => {
       if (Data) {
         console.log('There was already existed')
+        returnStatus(inputValue)
         res.render('index', { Data })
       } else {
+        //驗證網址是否能連上
+        // returnStatus(inputValue)
         // 如果沒有則創建一組
         console.log('Create new one')
-        URL.create(survey)
-          .then(() => res.render('index', { Data: survey }))
-          .catch(error => res.redirect('/error'))
+        // URL.create(survey)
+        //   .then(() => res.render('index', { Data: survey }))
+        //   .catch(error => res.redirect('/error'))
       }
     })
     .catch(error => res.redirect('/error'))
