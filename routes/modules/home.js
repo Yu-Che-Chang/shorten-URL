@@ -1,10 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const urlGenerator = require('../../url-generator')
+const urlGenerator = require('../../public/javascripts/url-generator')
+const httpExisted = require('../../public/javascripts/httpExisted')
 const URL = require('../../models/URLData')
 
 router.get('/', (req, res) => {
   res.render('index')
+  console.log(req.xhr)
+  if (res.statusCode !== 200) {
+    res.render('error')
+  }
 })
 
 router.post('/', (req, res) => {
@@ -25,10 +30,10 @@ router.post('/', (req, res) => {
         console.log('Create new one')
         URL.create(survey)
           .then(() => res.render('index', { Data: survey }))
-          .catch(error => console.log(error))
+          .catch(error => res.redirect('/error'))
       }
     })
-    .catch(error => console.log(error))
+    .catch(error => res.redirect('/error'))
 })
 
 module.exports = router

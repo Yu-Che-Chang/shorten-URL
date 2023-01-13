@@ -3,19 +3,6 @@
   border: 2px solid gray;
 }
 
-.input {
-  position: absolute;
-}
-
-
 .form-control {
   padding-left: 30px;
-}
-
-.magnifier {
-  position: relative;
-  right: 425px;
-  top: 7px;
-  z-index: 99;
-  color: #205295;
 }

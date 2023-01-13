@@ -7,4 +7,7 @@ router.use('/', home)
 const urls = require('./modules/urls')
 router.use('/shorturl', urls)
 
+const error = require('./modules/error')
+router.use('/error', error)
+
 module.exports = router

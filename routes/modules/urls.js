@@ -8,9 +8,9 @@ router.get('/:url', (req, res) => {
   URL.findOne({ shortenUrl })
     .lean()
     .then((Data) =>
-     res.redirect(Data.url)
+      res.redirect(Data.url)
     )
-    .catch(error => console.log(error))
+    .catch(error => res.redirect('/error'))
 })
 
 

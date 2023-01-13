@@ -11,5 +11,9 @@ submitButton.addEventListener('click', function onSubmitButtonClicked(event) {
 form.addEventListener('submit', function onSubmitFormSubmitted(event) {
   if (!input.value.length) {
     event.preventDefault()
-  }
+  } 
+  // else if (httpExisted(input.value)) {
+  //   event.preventDefault()
+  //   console.log("無效字元")
+  // }
 })
