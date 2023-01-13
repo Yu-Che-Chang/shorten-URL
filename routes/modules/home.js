@@ -8,7 +8,6 @@ const https = require('https')
 function returnStatus(inputValue) {
   https.get(inputValue, (res) => {
     console.log('status code:', res.statusCode)
-    console.log(res)
   })
 }
 
@@ -31,13 +30,15 @@ router.post('/', (req, res) => {
         returnStatus(inputValue)
         res.render('index', { Data })
       } else {
-        //驗證網址是否能連上
+        // 待補充
+        // 驗證網址是否能連上
         // returnStatus(inputValue)
+
         // 如果沒有則創建一組
         console.log('Create new one')
-        // URL.create(survey)
-        //   .then(() => res.render('index', { Data: survey }))
-        //   .catch(error => res.redirect('/error'))
+        URL.create(survey)
+          .then(() => res.render('index', { Data: survey }))
+          .catch(error => res.redirect('/error'))
       }
     })
     .catch(error => res.redirect('/error'))
