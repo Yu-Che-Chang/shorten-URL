@@ -16,12 +16,24 @@
     </div>
 
     {{#if Data}}
-    <div class="card return-url">
-      <div class="card-body">
-        <h4 class="fs-2 text-center">Url: <a href="{{Data.url}}">{{Data.url}}</a></h4>
-        <h4 class="fs-2 text-center">ShortenUrl: <a href="{{Data.shortenUrl}}">{{Data.shortenUrl}}</a></h4>
+    <div class="card return-url col-10">
+      <div class="card-body d-flex flex-column align-items-center">
+        <h4>Success! Please use the link!</h4>
+        <h4><a href="{{Data.shortenUrl}}" id='shortenUrl'>localhost:3000{{Data.shortenUrl}}</a></h4>
+        <button class="copyButton btn btn-primary btn-sm mt-1" onclick="copy()">copy</button>
       </div>
     </div>
     {{/if}}
   </div>
 </div>
+
+<script>
+  // copy 
+  function copy() {
+    const shortenUrl = document.querySelector('#shortenUrl')
+    const board = navigator.clipboard
+    board.writeText(shortenUrl.innerText)
+      .then(() => alert('success to copied'))
+      .catch(() => alert('failed'))
+  }
+</script>

@@ -17,9 +17,7 @@ app.use(express.urlencoded({ extended: true })) //取得 url-encoded
 
 app.use(routes)
 
-app.use((req, res, next) => {
-  res.status(404).redirect('/error')
-})
+app.use((req, res, next) => { res.status(404).redirect('/error') }) // 路由除錯
 
 app.listen(port, () => {
   console.log(`Now server is hosting on http://localhost:${port}`)

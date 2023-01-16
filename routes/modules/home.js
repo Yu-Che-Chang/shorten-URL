@@ -1,14 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const urlGenerator = require('../../public/javascripts/url-generator')
-const httpExisted = require('../../public/javascripts/httpExisted')
 const URL = require('../../models/URLData')
 const https = require('https')
 
 function returnStatus(inputValue) {
   https.get(inputValue, (res) => {
-    console.log('status code:', res.statusCode)
-  })
+    console.log('statusCode:', res.statusCode);
+
+  }).on('error', (e) => {
+    console.error(e);
+  });
 }
 
 router.get('/', (req, res) => {
@@ -32,13 +34,12 @@ router.post('/', (req, res) => {
       } else {
         // 待補充
         // 驗證網址是否能連上
-        // returnStatus(inputValue)
 
-        // 如果沒有則創建一組
-        console.log('Create new one')
-        URL.create(survey)
-          .then(() => res.render('index', { Data: survey }))
-          .catch(error => res.redirect('/error'))
+          // 如果沒有則創建一組
+          console.log('Create new one')
+          URL.create(survey)
+            .then(() => res.render('index', { Data: survey }))
+            .catch(error => res.redirect('/error'))
       }
     })
     .catch(error => res.redirect('/error'))
