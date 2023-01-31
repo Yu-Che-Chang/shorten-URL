@@ -1,16 +1,29 @@
 const express = require('express')
 const router = express.Router()
 const urlGenerator = require('../../public/javascripts/url-generator')
-const URL = require('../../models/URLData')
-const https = require('https')
+const URL = require('../../models/URLData');
+const { default: axios } = require('axios');
+let errorFeedback = ''
+let UrlStatusCode = ''
 
-function returnStatus(inputValue) {
-  https.get(inputValue, (res) => {
-    console.log('statusCode:', res.statusCode);
-
-  }).on('error', (e) => {
-    console.error(e);
-  });
+async function returnStatus(inputValue) {
+  await axios.get(inputValue)
+    //  如果網址可以連接
+    .then(res => {
+      errorFeedback = ''
+      UrlStatusCode = res.status
+      console.log(res.status)
+      console.log('網址有效!')
+    })
+    //  如果網址無法連接
+    .catch(err => {
+      errorFeedback = '請輸入有效網址'
+      console.log('網址無效!')
+    })
+    .finally(() => {
+      console.log('error:', errorFeedback)
+    }
+    )
 }
 
 router.get('/', (req, res) => {
@@ -28,21 +41,35 @@ router.post('/', (req, res) => {
     .lean()
     .then((Data) => {
       if (Data) {
-        console.log('There was already existed')
-        returnStatus(inputValue)
+        console.log('資料庫已存在')
         res.render('index', { Data })
       } else {
         // 待補充
-        // 驗證網址是否能連上
-
-          // 如果沒有則創建一組
-          console.log('Create new one')
-          URL.create(survey)
-            .then(() => res.render('index', { Data: survey }))
-            .catch(error => res.redirect('/error'))
+        // 驗證網址是否正確連接
+        try {
+          returnStatus(inputValue)
+        }
+        catch (err) {
+          console.log(err)
+        } finally {
+          if (UrlStatusCode === 200) {
+            // 如果沒有則創建一組
+            console.log('Create new one')
+            URL.create(survey)
+              .then(() => res.render('index', { Data: survey }))
+              .catch(error => res.redirect('/error'))
+          } else {
+            errorFeedback = '請輸入有效網址'
+            console.log(errorFeedback)
+            res.render('index', { errorFeedback })
+          }
+        }
       }
     })
-    .catch(error => res.redirect('/error'))
+    .catch(err => {
+      console.log(err)
+      res.redirect('/')
+    })
 })
 
 module.exports = router

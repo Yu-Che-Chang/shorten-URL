@@ -5,12 +5,12 @@
       <img src="images/ExportedContentImage_00.png" alt="" class="img img-fluid rounded mx-auto d-block col-3">
     </div>
     <div class="mt-3 col-8 ">
-      <form action="/" method="post" class="form" novalidate>
+      <form action="/" method="post" class="form {{#if errorFeedback}}was-validated{{/if}}" novalidate>
         <div class="input-group mb-3">
           <input type="url" name="url" class="form-control" placeholder="http://" aria-label="http://"
             aria-describedby="button-addon2" value="{{Data.url}}" required>
           <button class="btn btn-primary" type="submit" id="button-addon2">縮網址</button>
-          <div class="invalid-feedback">請輸入完整網址</div>
+          <div class="invalid-feedback">{{#if errorFeedback}}{{errorFeedback}}{{/if}}</div>
         </div>
       </form>
     </div>
