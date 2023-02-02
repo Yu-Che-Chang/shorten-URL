@@ -1,6 +1,6 @@
 # shorten_url 1.0
 主畫面:
-![image](https://github.com/Yu-Che-Chang/shorten-URL/blob/main/public/images/main.png)
+![image](https://github.com/Yu-Che-Chang/shorten-URL/blob/main/public/images/%20main.png)
 
 基本介紹：
 ---
@@ -9,11 +9,11 @@
 功能：
 ---
 1. 使用者可以在首頁看到
-- 搜尋欄
-- 輸入網址
-- 縮網址
+-  搜尋欄
+-  輸入網址
+-  縮網址
 2. 使用者可以點擊縮網址並連結至原網址
-
+3. 使用者可以複製連結至剪貼簿
 
 
 安裝執行：

@@ -23,8 +23,4 @@ form.addEventListener('submit', function onSubmitFormSubmitted(event) {
     event.preventDefault()
     errorFeedback.innerText = '請輸入完整網址'
   }
-  // else if (httpExisted(input.value)) {
-  //   event.preventDefault()
-  //   console.log("無效字元")
-  // }
 })
